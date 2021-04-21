@@ -1,10 +1,22 @@
 version: 2
 jobs:
-  build:
+  bobby:
     docker:
       - image: circleci/node:8.9
     steps:
       - checkout
       - run: echo "npm installing"
+  sally:
+    docker:
+      - image: circleci/node:8.9
+    steps:
+      - checkout
+      - run: echo "double troble"
+  workflows:
+    version: 2
+    bobby_sally:
+      jobs:
+        - bobby
+        - sally
       
 
