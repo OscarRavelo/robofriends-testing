@@ -22,13 +22,13 @@ jobs:
       -checkout
       -run: echo "hellooooo!"
 workflows:
-    version: 2
-    build_test_and_lint:
-      jobs:
-        - build
-        - hithere
-        - test:
-            requires:
-              -hithere
+  version: 2
+  build_test_and_lint:
+    jobs:
+      - build
+      - hithere
+      - test:
+          requires:
+            -hithere
       
 
