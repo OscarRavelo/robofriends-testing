@@ -1,22 +1,35 @@
 version: 2
 jobs:
-  bobby:
+  build:
     docker:
-      - image: circleci/node:8.9
+      - image: circleci/node:10
     steps:
       - checkout
       - run: echo "npm installing"
-  sally:
+      - run: npm install
+      - run: CI=true npm run build
+  test:
     docker:
-      - image: circleci/node:8.9
+      - image: circleci/node:10
     steps:
       - checkout
-      - run: echo "double troble"
+      - run: echo "testing stuff"
+      - run: npm install
+      - run: npm test
+  hithere:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: echo "hellooooo!"
 workflows:
-    version: 2
-    bobby_sally:
-      jobs:
-        - bobby
-        - sally
+  version: 2
+  build_test_and_lint:
+    jobs:
+      - build
+      - hithere
+      - test:
+          requires:
+            - hithere
       
 
