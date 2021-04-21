@@ -12,7 +12,7 @@ jobs:
     steps:
       - checkout
       - run: echo "double troble"
-  workflows:
+workflows:
     version: 2
     bobby_sally:
       jobs:
